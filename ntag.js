@@ -13,7 +13,7 @@ var CMD_WRITE = 0xa2; // implemented
 
 // other commands
 var CMD_GET_VERSION = 0x60; // implemented
-var PWD_AUTH = 0x1b // unimplemented
+var CMD_PWD_AUTH = 0x1b // unimplemented
 
 
 amiibo.set(data, 0); // load data
@@ -42,6 +42,9 @@ NRF.on("NFCrx", function (rx) {
       // product version (always 0x0100) - 1 major, 0 minor
       // storage size - 0x11
       // procotol (always 0x03) - 0x03
+    case CMD_PWD_AUTH:
+      NRF.nfcSend();
+      break;
     default:
       NRF.nfcSend()
       break;
