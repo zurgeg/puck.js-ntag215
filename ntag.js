@@ -23,14 +23,14 @@ NRF.on("NFCrx", function (rx) {
   var idx = rx[1] * 4;
   switch (cmd){
     case CMD_READ:
-      NRF.nfcSend(new Uint8Array(data.buffer, idx, 16));
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, idx, 16));
       break;
     case CMD_WRITE:
       written = true;
       if(idx > data.length) {
         NRF.nfcSend(0x0);
       } else {
-        data.set(new Uint8Array(rx, 2, 4), idx);
+        buffer.set(new Uint8Array(rx, 2, 4), idx);
         NRF.nfcSend(0xA);
       }
       break;
@@ -42,6 +42,13 @@ NRF.on("NFCrx", function (rx) {
       // product version (always 0x0100) - 1 major, 0 minor
       // storage size - 0x11
       // procotol (always 0x03) - 0x03
+      break;
+    case CMD_FAST_READ:
+      var startaddr = idx / 4;
+      var endaddr = rx[2] * 4;
+      var diff = endaddr - startaddr;
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, startaddr, diff));
+      break;
     default:
       NRF.nfcSend()
       break;
