@@ -23,7 +23,7 @@ NRF.on("NFCrx", function (rx) {
   var idx = rx[1] * 4;
   switch (cmd){
     case CMD_READ:
-      NRF.nfcSend(new Uint8Array(data.buffer, idx, 16));
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, idx, 16));
       break;
     case CMD_WRITE:
       written = true;
@@ -43,7 +43,7 @@ NRF.on("NFCrx", function (rx) {
       // storage size - 0x11
       // procotol (always 0x03) - 0x03
     case CMD_PWD_AUTH:
-      NRF.nfcSend();
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, 0x86, 0x88));
       break;
     default:
       NRF.nfcSend()
