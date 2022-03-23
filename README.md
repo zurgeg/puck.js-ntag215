@@ -1,6 +1,9 @@
 # puck.js-ntag215
 Messing with my puck.js
 
+## WARNING!
+Since this is designed mainly for storing amiibo, **a full backdoor is active**. Read/write-locking **is not implemented**. Everything is **fully open**. ***I MAKE NO PROMISES WHEN IT COMES TO SECURITY***
+
 ## What is this?
 Simple, this is an attempt at emulating NTAG21x with a puck.js. See https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf. 
 
