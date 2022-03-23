@@ -17,7 +17,7 @@ You can find the respective branches for the implementation (if there is one) li
 - [x] `WRITE` - 0xa2
 
 ### Misc. (50%)
-- [x] GET_VERSION - 0x60
-- [ ] PWD_AUTH - 0x1b
+- [x] `GET_VERSION` - 0x60
+- [ ] `PWD_AUTH` - 0x1b
 
 
