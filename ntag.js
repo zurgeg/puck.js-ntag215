@@ -44,10 +44,9 @@ NRF.on("NFCrx", function (rx) {
       // procotol (always 0x03) - 0x03
       break;
     case CMD_FAST_READ:
-      var startaddr = idx / 4;
       var endaddr = rx[2] * 4;
-      var diff = endaddr - startaddr;
-      NRF.nfcSend(new Uint8Array(amiibo.buffer, startaddr, diff));
+      var diff = endaddr - idx;
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, idx, diff));
       break;
     default:
       NRF.nfcSend()
