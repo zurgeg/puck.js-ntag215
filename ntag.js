@@ -18,19 +18,27 @@ var PWD_AUTH = 0x1b // unimplemented
 
 amiibo.set(data, 0); // load data
 
+// load config into vars for ease of use
+config_page = new Uint8Array(amiibo.buffer, 0x83, 16); // page 0x83-0x86
+cfg0 = new Uint8Array(config_page.buffer, 0x0, 4); // page 0x83
+access = new Uint8Array(config_page.buffer, 0x4, 4); // page 0x84
+pwd = new Uint8Array(config_page.buffer, 0x8, 4); // page 0x85
+pack = new Uint8Array(config_page.buffer, 0xc, 4); // page 0x86
+
+
 NRF.on("NFCrx", function (rx) {
   var cmd = rx[0];
   var idx = rx[1] * 4;
   switch (cmd){
     case CMD_READ:
-      NRF.nfcSend(new Uint8Array(data.buffer, idx, 16));
+      NRF.nfcSend(new Uint8Array(amiibo.buffer, idx, 16));
       break;
     case CMD_WRITE:
       written = true;
-      if(idx > data.length) {
+      if(idx > amiibo.length) {
         NRF.nfcSend(0x0);
       } else {
-        data.set(new Uint8Array(rx, 2, 4), idx);
+        amiibo.set(new Uint8Array(rx, 2, 4), idx);
         NRF.nfcSend(0xA);
       }
       break;
