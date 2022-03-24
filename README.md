@@ -21,6 +21,6 @@ You can find the respective branches for the implementation (if there is one) li
 
 ### Misc. (50%)
 - [x] `GET_VERSION` - 0x60
-- [ ] `PWD_AUTH` - 0x1b
+- [ ] [`PWD_AUTH`](https://github.com/zurgeg/puck.js-ntag215/tree/implement-pwd_auth) - 0x1b
 
 
